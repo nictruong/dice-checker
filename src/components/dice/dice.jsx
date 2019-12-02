@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
-import { Container, Segment, Header, Button } from 'semantic-ui-react';
+import { Container, Segment, Header, Button, Input } from 'semantic-ui-react';
 import { rollDice } from '../../store/dice/dice.actions';
 import { connect } from 'react-redux';
 import { Bar } from 'react-chartjs-2';
@@ -24,6 +24,7 @@ const Dice = ({
     const [firstDie, setFirstDie] = useState(0);
     const [secondDie, setSecondDie] = useState(0);
     const [totalRolls, setTotalRolls] = useState(0);
+    const [nbOfRepeat, setNbOfRepeat] = useState(0);
     // const [gauge, setGauge] = useState(0);
 
     // const getGaugeLevel = rolls => {
@@ -86,6 +87,19 @@ const Dice = ({
         action_rollDice([first, second]);
     }
 
+    const onSimulationClick = () => {
+        for (let i=0; i<nbOfRepeat; i++) {
+            const first = Math.floor(Math.random() * 6) + 1;
+            const second = Math.floor(Math.random() * 6) + 1;
+            action_rollDice([first, second]);
+        }
+        setTotalRolls(totalRolls + Number(nbOfRepeat));
+    }
+
+    const onNumberChange = (e, { value }) => {
+        setNbOfRepeat(value);
+    }
+
     return (
         <Container>
             <Segment>
@@ -100,6 +114,12 @@ const Dice = ({
                             primary
                             onClick={onRollClick}>
                             Roll 'em
+                        </Button>
+                        <Input placeholder='Put an int here...' type="number" onChange={onNumberChange} />
+                        <Button
+                            primary
+                            onClick={onSimulationClick}>
+                            Let it rip
                         </Button>
                     </div>
                     <div style={{position: 'relative'}}>
