@@ -23,6 +23,7 @@ const Dice = ({
     const [result, setResult] = useState(undefined);
     const [firstDie, setFirstDie] = useState(0);
     const [secondDie, setSecondDie] = useState(0);
+    const [totalRolls, setTotalRolls] = useState(0);
     // const [gauge, setGauge] = useState(0);
 
     // const getGaugeLevel = rolls => {
@@ -80,6 +81,8 @@ const Dice = ({
         const first = Math.floor(Math.random() * 6) + 1;
         const second = Math.floor(Math.random() * 6) + 1;
 
+        setTotalRolls(totalRolls + 1);
+
         action_rollDice([first, second]);
     }
 
@@ -99,7 +102,11 @@ const Dice = ({
                             Roll 'em
                         </Button>
                     </div>
-                    <div>
+                    <div style={{position: 'relative'}}>
+                        <div style={{marginBottom: '4em'}}>
+                            <div style={{fontSize: '20px', marginBottom: '1em'}}> </div>
+                            <div style={{fontSize: '50px'}}># of rolls: {totalRolls}</div>
+                        </div>
                         {/* <Gauge value={gauge} width={200} height={160} label="Salt level" /> */}
                     </div>
                 </div>
