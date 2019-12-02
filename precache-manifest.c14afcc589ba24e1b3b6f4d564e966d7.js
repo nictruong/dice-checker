@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "3104e6fb791df0ab4e338ad46795a81d",
+    "revision": "6a94649b417fff1184fabb68899a388c",
     "url": "/dice-checker/index.html"
   },
   {
