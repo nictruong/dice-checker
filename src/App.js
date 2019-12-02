@@ -1,25 +1,37 @@
 import React from 'react';
-import logo from './logo.svg';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
+import { Menu } from 'semantic-ui-react';
+import { Provider } from 'react-redux';
+import Dice from './components/dice/dice';
+
 import './App.css';
+import 'semantic-ui-css/semantic.min.css'
+import store from './store';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Provider store={store}>
+      <Router>
+        <Menu>
+          <Menu.Item as={ Link } name='dice' to='dice'>
+            Dice
+          </Menu.Item>
+          <Menu.Item as={ Link } name='stats' to='stats'>
+            Stats  
+          </Menu.Item>
+        </Menu>
+        <Switch>
+          <Route path="/dice">
+            <Dice></Dice>
+          </Route>
+        </Switch>
+      </Router>
+    </Provider>
   );
 }
 
