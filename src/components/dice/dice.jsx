@@ -4,7 +4,7 @@ import { Container, Segment, Header, Button } from 'semantic-ui-react';
 import { rollDice } from '../../store/dice/dice.actions';
 import { connect } from 'react-redux';
 import { Bar } from 'react-chartjs-2';
-import Gauge from 'react-svg-gauge';
+// import Gauge from 'react-svg-gauge';
 
 const data = {
     labels: ['2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'],
@@ -23,33 +23,33 @@ const Dice = ({
     const [result, setResult] = useState(undefined);
     const [firstDie, setFirstDie] = useState(0);
     const [secondDie, setSecondDie] = useState(0);
-    const [gauge, setGauge] = useState(0);
+    // const [gauge, setGauge] = useState(0);
 
-    const getGaugeLevel = rolls => {
-        const total = Object.keys(rolls).reduce((sum, num) => {
-            return sum + rolls[num];
-        }, 0);
-        return Math.round(Object.keys(rolls).reduce((gaugeLevel, num) => {
-            const amount = rolls[num];
-            const ratio = amount / total;
-            let diff;
-            if (num === 2 || num === 12) {
-                diff = Math.abs(ratio - 1 / 36);
-            } else if (num === 3 || num === 11) {
-                diff = Math.abs(ratio - 2 / 36);
-            } else if (num === 4 || num === 10) {
-                diff = Math.abs(ratio - 3 / 36);
-            } else if (num === 5 || num === 9) {
-                diff = Math.abs(ratio - 4 / 36);
-            } else if (num === 6 || num === 8) {
-                diff = Math.abs(ratio - 5 / 36);
-            } else {
-                diff = Math.abs(ratio - 6 / 36);
-            }
+    // const getGaugeLevel = rolls => {
+    //     const total = Object.keys(rolls).reduce((sum, num) => {
+    //         return sum + rolls[num];
+    //     }, 0);
+    //     return Math.round(Object.keys(rolls).reduce((gaugeLevel, num) => {
+    //         const amount = rolls[num];
+    //         const ratio = amount / total;
+    //         let diff;
+    //         if (num === 2 || num === 12) {
+    //             diff = Math.abs(ratio - 1 / 36);
+    //         } else if (num === 3 || num === 11) {
+    //             diff = Math.abs(ratio - 2 / 36);
+    //         } else if (num === 4 || num === 10) {
+    //             diff = Math.abs(ratio - 3 / 36);
+    //         } else if (num === 5 || num === 9) {
+    //             diff = Math.abs(ratio - 4 / 36);
+    //         } else if (num === 6 || num === 8) {
+    //             diff = Math.abs(ratio - 5 / 36);
+    //         } else {
+    //             diff = Math.abs(ratio - 6 / 36);
+    //         }
 
-            return gaugeLevel += diff;
-        }, 0) * 36);
-    };
+    //         return gaugeLevel += diff;
+    //     }, 0) * 36);
+    // };
 
     useEffect(() => {
         if (diceState.rolls.length) {
@@ -67,12 +67,12 @@ const Dice = ({
 
             data.datasets[0].data = numbers;
 
-            const gaugeLevel = getGaugeLevel(rolls);
+            // const gaugeLevel = getGaugeLevel(rolls);
 
             setFirstDie(first);
             setSecondDie(second);
             setResult(first + second);
-            setGauge(gaugeLevel);
+            // setGauge(gaugeLevel);
         }
     }, [diceState]);
 
